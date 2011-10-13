@@ -4,6 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/org.json.jar"/>
 	<classpathentry kind="lib" path="/rteam-gae/war/WEB-INF/classes"/>
-	<classpathentry kind="lib" path="/Users/joepwro/workspace/rteam-gae/war/WEB-INF/lib/appengine-api-1.0-sdk-1.5.3.jar"/>
+	<classpathentry kind="lib" path="/rteam-gae/war/WEB-INF/lib/appengine-api-1.0-sdk-1.5.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
