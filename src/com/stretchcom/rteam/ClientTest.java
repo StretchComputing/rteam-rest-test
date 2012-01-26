@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
-import com.google.appengine.repackaged.com.google.common.util.Base64;
+import org.apache.commons.codec.binary.Base64;
 import com.stretchcom.rteam.server.GMT;
 
 import org.json.JSONArray;
@@ -32,10 +32,10 @@ public class ClientTest {
 	
 	//::TODO::  **************** HTTPS TURNED OFF RIGHT NOW *************************
 	//private static final String HTTPS_BASE_URL = "https://14.latest.rteamtest.appspot.com:8443/"; // tried this but it didn't work
-	//private static final String HTTPS_BASE_URL = "http://v2-2.latest.rteamtest.appspot.com/";
+	private static final String HTTPS_BASE_URL = "http://v2-3.latest.rteamtest.appspot.com/";
 	//private static final String HTTPS_BASE_URL = "http://rteamtest.appspot.com/";
 	//private static final String HTTPS_BASE_URL = "http://localhost:8888/v1/";  //development server.  Run->Run As->Web Application
-	private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
+	//private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
 	
 	private static final String USERS_RESOURCE_URI = "users";
 	private static final String USER_RESOURCE_URI = "user";
@@ -85,8 +85,8 @@ public class ClientTest {
 //		String token3 = "8ehecce6lqjegntlksm7f83t7u"; // Mike's user that is having Get Activity for All Teams API errors
 //		
 //		// TEAM #1
-//		String teamId1 = "aglydGVhbXRlc3RyDAsSBFRlYW0YwpM4DA"; // thunder
-//		String memberId1_1 = "aglydGVhbXRlc3RyGQsSBFRlYW0YwpM4DAsSBk1lbWJlchjRDww"; //fan
+//		String teamId1 = "aglydGVhbXRlc3RyDQsSBFRlYW0YytG4AQw"; // JustJoes
+//		String memberId1_1 = ""; //fan
 //		String memberId1_2 = "";
 //		String creatorMemberId1 = "";
 //		String gameId1_1 = "";
@@ -96,7 +96,7 @@ public class ClientTest {
 //		String messageThreadId1_2 = "";
 //		
 //		// TEAM #2
-//		String teamId2 = "aglydGVhbXRlc3RyDAsSBFRlYW0Y6alIDA"; // Beta Testers
+//		String teamId2 = "aglydGVhbXRlc3RyDAsSBFRlYW0YiqtSDA"; // Beta Testers
 //		String memberId2_1 = "";
 //		String memberId2_2 = "";
 //		String gameId2_1 = "";
@@ -119,7 +119,7 @@ public class ClientTest {
 		String token4 = ""; 
 		
 		// TEAM #1
-		String teamId1 = "aglydGVhbXRlc3RyCgsSBFRlYW0YBAw"; 
+		String teamId1 = "aglydGVhbXRlc3RyCgsSBFRlYW0YBAw";
 		String memberId1_1 = "aglydGVhbXRlc3RyFgsSBFRlYW0YBAwLEgZNZW1iZXIYBQw"; // creator
 		String memberId1_2 = "";
 		String creatorMemberId1 = "";
@@ -136,8 +136,8 @@ public class ClientTest {
 		String memberId2_2 = "";
 		String gameId2_1 = "";
 		String practiceId2_1 = "";
-		
-		String teamId3 = "";
+//		
+//		String teamId3 = "";
 		//=====================================================================================================================
 
 		
@@ -389,7 +389,7 @@ public class ClientTest {
 		//token2 = verifyCreateUser(userFirstName2, userLastName2, userPassword2, userEmailAddress2, userPhoneNumber2, false, passwordResetQuestion2, passwordResetAnswer2, null, null);
 		//token3 = verifyCreateUser(userFirstName3, userLastName3, userPassword3, userEmailAddress3, userPhoneNumber3, false, passwordResetQuestion3, passwordResetAnswer3, null, null);
 		//token4 = verifyCreateUser(userFirstName4, userLastName4, userPassword4, userEmailAddress4, userPhoneNumber4, false, passwordResetQuestion4, passwordResetAnswer4, null, null);
-		//token3 = verifyCreateUser("Joe", "Wroblewski", "joepwro", "joe@gmail.com", "6302156979", false, passwordResetQuestion3, passwordResetAnswer3, "41.809", "-87.9");
+		//token3 = verifyCreateUser("Joe", "Wroblewski", "joepwro", "brokenUser@gmail.com", "6302156979", false, passwordResetQuestion3, passwordResetAnswer3, "41.809", "-87.9");
 		
 		// =======================
 		// GET USER INFO and TOKEN
@@ -403,8 +403,12 @@ public class ClientTest {
 		//verifyGetUserToken("joepwro@gmail.com", "uto123");
 		//verifyGetUserToken(userEmailAddress1, "bad_user_password");
 		//verifyGetUserToken("invalid_email_address", "bad_user_password");
-	    //verifyGetUserConfirmationInfo("gsk9uhpdigheionqpr9ng0mek3");  // copy-and-paste oneUseToken (from user welcome msg recipient entity) param from local GAE data viewer
 		//verifyGetUserPasswordResetQuestion(userEmailAddress1);
+
+		//*****************************************************
+		// *** To Network Authenticated both Users and Members
+		//*****************************************************
+	    //verifyGetUserConfirmationInfo("rr7pnjh5jsg40b9qnjqr0j3k1p");  // copy-and-paste oneUseToken (from user welcome msg recipient entity) param from local GAE data viewer
 
 		
 		// ===========
@@ -424,7 +428,7 @@ public class ClientTest {
 		//                          String theUserIconTwoId, String theUserIconTwoAlias, String theUserIconTwoImage,
 		//                          Integer theAutoArchiveDayCount, String theFakePhoto, String theLatitude,
 		//                          String theLongitudeString theToken)
-		//verifyUpdateUser("Joseph", "Wroblewski", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, token1);
+		//verifyUpdateUser("Joseph P.", "Wroblewski", null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, token1);
 		//verifyUpdateUser(null, null, "redst0ne", null, null, null, null, null, null, null, null, null, null, null, null, null, null, token3); // update password
 		//verifyUpdateUser(null, null, null, null, null, null, null, null, null, null, null, null, null, null, "this is fake photo data", null, null, token1); // photo
 		//verifyUpdateUser(null, null, null, null, "true", null, null, null, null, null, null, null, null, null, null, null, null, token1); // network authenticate user
@@ -473,9 +477,9 @@ public class ClientTest {
 		// GET TEAMS AND TEAM INFO
 		//========================
 		//verifyGetTeamInfo(teamId1, token1);
-		//verifyGetTeamInfo(teamId2, token1);
+		//verifyGetTeamInfo(teamId2, token2);
 		//verifyGetTeamInfo("aglydGVhbXRlc3RyDQsSBFRlYW0Y5eGbAQw", "embaf11058fikl5nki4r0o7vk0");
-		//verifyGetTeams(token1);
+		//verifyGetTeams(token2);
 		//verifyGetTeams("8if3v0u0h3spn867mk830ach5r");
 		//verifyGetTeams(token4);
 		
@@ -530,7 +534,7 @@ public class ClientTest {
 //		guardianFirstNames.add("Gale");
 //		List<String> guardianLastNames = new ArrayList<String>();
 //		guardianLastNames.add("Wroblewski");
-//		verifyCreateMember(teamId2, "Just", "Mom", null, "kid@justMom.com", null,
+//		verifyCreateMember(teamId1, "Just", "Mom", null, "kid@justMom.com", null,
 //				null, guardianEmailAddresses, guardianFirstNames, guardianLastNames, "member",
 //				null, null, null, null, null, null, token1); // just a mom
 		
@@ -581,8 +585,8 @@ public class ClientTest {
 		//verifyGetMembers(teamId1, false, token1);  // do not include fans
 		//verifyGetMembers("aglydGVhbXRlc3RyDQsSBFRlYW0YnaObAQw", false, token1);
 		//verifyGetMembers("aglydGVhbXRlc3RyDQsSBFRlYW0Y5LKjAQw", true, "8if3v0u0h3spn867mk830ach5r"); //2-2 test
-		
 		//verifyGetMembers(teamId3, true, token3);  // include fans
+		
 		//verifyGetMemberInfo(teamId1, memberId1_1, token1);
 		//verifyGetMemberInfo(teamId1, memberId1_2, token1);
 		//verifyGetMemberInfo(teamId2, "aglydGVhbXRlc3RyGAsSBFRlYW0Y_gkMCxIGTWVtYmVyGIMKDA", token1);
@@ -639,7 +643,7 @@ public class ClientTest {
 		//verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, 41.1111111, -87.7777777, null, null, null, null, "plain", "Quad Cities", null, true, token1); // update location for all games, w/ notification
 		//verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, null, null, null, "4", "4", "-4", null, null, null, null, token1); // update scores and interval
 		//verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, null, null, null, "2", "10", "4.4", null, null, null, null, token1); // invalid score/interval
-		//verifyUpdateGame(teamId1, gameId1_1, "2011-1-25 11:11", userTimeZone1, null, null, null, null, null, null, null, null, null, null, null, null, token1); // update start time
+		//verifyUpdateGame(teamId1, "aglydGVhbXRlc3RyCgsSBEdhbWUYCww", "2012-1-8 1:05", userTimeZone1, null, null, null, null, null, null, null, null, null, null, null, null, token1); // update start time
 		//verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, null, null, null, null, null, null, null, null, "closed", null, token1); // close the game poll
 		//verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, null, null, null, null, null, null, null, null, "open", null, token1); // open the game poll
 		
@@ -665,7 +669,7 @@ public class ClientTest {
 		//verifyGetTeamGames(teamId1, gameTimeZone1_1, token1);
 		//verifyGetTeamGames(teamId2, gameTimeZone2_1, token1);
 		//verifyGetAllGames(gameTimeZone1_1, token1);
-		//verifyGetGameInfo(teamId1, gameId1_1, gameTimeZone1_1, token1);
+		//verifyGetGameInfo(teamId1, "aglydGVhbXRlc3RyCgsSBEdhbWUYCww", gameTimeZone1_1, token1);
 		//verifyGetGameInfo("aglydGVhbXRlc3RyDQsSBFRlYW0Y5LKjAQw", "aglydGVhbXRlc3RyDQsSBEdhbWUY3IK4AQw", gameTimeZone1_1, "8if3v0u0h3spn867mk830ach5r"); //2-2 test
 		
 		
@@ -754,7 +758,7 @@ public class ClientTest {
 		// GET ATTENDEES
 		// ================
 		// PARAMS:: verifyGetAttendees(teamId, gameId, eventType, memberId, timezone, startDate, endDate, token)
-		verifyGetAttendees(teamId1, gameId1_1, "game", null, null, null, null, token1); //eventId based
+		//verifyGetAttendees(teamId1, gameId1_1, "game", null, null, null, null, token1); //eventId based
 		//verifyGetAttendees(teamId1, null, null, memberId1_1, gameTimeZone1_1, "2010-11-07 09:55", null, token1); //memberId based, start date
 		//verifyGetAttendees(teamId1, null, "game", memberId1_1, gameTimeZone1_1, "2010-11-07 09:55", null, token1); //memberId based, start date, games only
 		//verifyGetAttendees(teamId1, null, null, memberId1_1, gameTimeZone1_1, null, "2010-11-09 09:55", token1); //memberId based, end date
@@ -888,7 +892,7 @@ public class ClientTest {
 		// PARAMS:   verifyGetActivities(String theTeamId, String theMaxCount, String theRefreshFirst, String theNewOnly,
         //                               String theMaxCacheId, String theTimeZone, String theToken)
 		//verifyGetActivities(teamId1, "20", "false", null, null, userTimeZone1, token1); // get from cache like first call from screen
-		//verifyGetActivities(teamId1, null, null, null, null, userTimeZone1, token1);    // get from cache -- using all defaults
+		//verifyGetActivities(teamId1, null, null, null, null, userTimeZone1, token2);    // get from cache -- using all defaults
 		//verifyGetActivities(teamId1, "20", "true", "true", null, userTimeZone1, token1);  // refresh first, new only
 		//verifyGetActivities(teamId1, "20", "true", "true", null, userTimeZone1, token2);  // refresh first, new only
 		
@@ -899,9 +903,18 @@ public class ClientTest {
 		// PARAMS: verifyGetActivitiesForAllTeams(String theMaxCount, String theRefreshFirst, String theNewOnly,
         //                                        String theMostCurrentDateStr, String theTotalNumberOfDaysStr,
 		//                                        String theTimeZone, String theToken)
-		//verifyGetActivitiesForAllTeams("20", "false", null, "2011-10-20", "30", userTimeZone1, token1);  // get last week of activity from cache
-		//verifyGetActivitiesForAllTeams("20", "true", "true", null, null, userTimeZone1, token1); // refresh & newOnly
+		//verifyGetActivitiesForAllTeams("20", "false", null, "2012-1-12", "30", userTimeZone1, token1);  // get last week of activity from cache
+		//verifyGetActivitiesForAllTeams("20", "true", "true", null, null, userTimeZone1, token2); // refresh & newOnly
 		//verifyGetActivitiesForAllTeams("20", null, "true", null, null, userTimeZone1, token3); // refresh & newOnly
+		
+		
+		// ======================
+		// GET ACTIVITIES DETAILS
+		// ======================
+		// PARAMS: verifyGetActivitiesDetails(String theTimeZone, String theActivityIds, String theToken)
+//		List<String> activityIds = new ArrayList<String>();
+//		activityIds.add("aglydGVhbXRlc3RyDgsSCEFjdGl2aXR5GBYM");
+//		verifyGetActivitiesDetails(userTimeZone1, activityIds, token1); // for one activity ID
 		
 		
 		// =================================
@@ -961,6 +974,7 @@ public class ClientTest {
 		//verifyUserMigration("normalizePhoneNumbersTask", null); // migration to normalize member phone numbers to all digits
 		//verifyUserMigration("normalizeGuardianListsTask", null); // for each member, ensure all guardian lists are the same size
 		//verifyUserMigration("defaultMemberAccessPreferencesTask", null); // for each member, default new access preference fields
+		verifyUserMigration("setActivityIsReplyTask", null); // isReply in all activities set to false
 	}
 	
 	private static String verifyUserApis() {
@@ -1077,7 +1091,7 @@ public class ClientTest {
 			if(theLongitude != null) json.put("longitude", theLongitude);
 			
 			if(theFakePhoto != null) {
-				String photoBase64 = Base64.encode(theFakePhoto.getBytes());
+				String photoBase64 = Base64.encodeBase64String(theFakePhoto.getBytes());
 				json.put("photo", photoBase64);
 			}
 			System.out.println(json.toString());
@@ -2538,7 +2552,7 @@ public class ClientTest {
 		try {
 			if(theStatusUpdate != null) json.put("statusUpdate", theStatusUpdate);
 			if(theFakePhoto != null) {
-				String photoBase64 = Base64.encode(theFakePhoto.getBytes());
+				String photoBase64 = Base64.encodeBase64String(theFakePhoto.getBytes());
 				json.put("photo", photoBase64);
 			}
 			System.out.println("json object = " + json.toString());
@@ -2636,6 +2650,33 @@ public class ClientTest {
 			e.printStackTrace();
 		} finally {
 			System.out.println("verifyGetActivitiesForAllTeams() complete\n");
+		}
+	}
+	
+	private static void verifyGetActivitiesDetails(String theTimeZone, List<String> theActivityIds, String theToken) {
+		System.out.println("\n\n verifyGetActivitiesDetails() starting .....\n");
+		String encodedTimeZone = ClientTest.encode(theTimeZone);
+		String urlStr = HTTPS_BASE_URL + ACTIVITIES_RESOURCE_URI + "/details/" + encodedTimeZone;
+		urlStr = urlStr + "?" + "ignore=na";
+		
+		String activityIdsStr = "";
+		for(String aId : theActivityIds) {
+			if(activityIdsStr.length() > 0) activityIdsStr = activityIdsStr + ",";
+			activityIdsStr = activityIdsStr + aId;
+		}
+		String encodedActivityIds = ClientTest.encode(activityIdsStr);
+		urlStr = urlStr + "&" + "activityIds=" + encodedActivityIds;
+		System.out.println("urlStr with encoding = " + urlStr + "\n");
+		
+		try {
+			URL url = new URL(urlStr);
+			String response = ClientTest.send(url, ClientTest.HTTP_GET, null, "rTeamLogin", theToken);
+			if(isLoggingEnabled) System.out.println("repStr = " + response);
+			System.out.println("\n");
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("verifyGetActivitiesDetails() complete\n");
 		}
 	}
 	
@@ -2820,7 +2861,7 @@ public class ClientTest {
 					System.out.println("base64 encoding failed: " + uee.getMessage());
 				}
 
-				String header = "Basic " + Base64.encode(bytes);
+				String header = "Basic " + Base64.encodeBase64String(bytes);
 				connection.setRequestProperty("Authorization", header);
 			}
 
