@@ -32,9 +32,9 @@ public class ClientTest {
 	
 	//::TODO::  **************** HTTPS TURNED OFF RIGHT NOW *************************
 	//private static final String HTTPS_BASE_URL = "https://14.latest.rteamtest.appspot.com:8443/"; // tried this but it didn't work
-	private static final String HTTPS_BASE_URL = "http://v2-3.latest.rteamtest.appspot.com/";
+	//private static final String HTTPS_BASE_URL = "http://v2-3.latest.rteamtest.appspot.com/";
 	//private static final String HTTPS_BASE_URL = "http://rteamtest.appspot.com/";
-	//private static final String HTTPS_BASE_URL = "http://localhost:8888/v1/";  //development server.  Run->Run As->Web Application
+	private static final String HTTPS_BASE_URL = "http://localhost:8888/v1/";  //development server.  Run->Run As->Web Application
 	//private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
 	
 	private static final String USERS_RESOURCE_URI = "users";
@@ -114,7 +114,7 @@ public class ClientTest {
 		//
 		// USER TOKEN
 		String token1 = "3plhg1smhtr5jalfei6hk8aut9";
-		String token2 = "";
+		String token2 = "sv4b7ugcioipp5pvuocogrhq0k";
 		String token3 = "";
 		String token4 = ""; 
 		
@@ -389,14 +389,14 @@ public class ClientTest {
 		//token2 = verifyCreateUser(userFirstName2, userLastName2, userPassword2, userEmailAddress2, userPhoneNumber2, false, passwordResetQuestion2, passwordResetAnswer2, null, null);
 		//token3 = verifyCreateUser(userFirstName3, userLastName3, userPassword3, userEmailAddress3, userPhoneNumber3, false, passwordResetQuestion3, passwordResetAnswer3, null, null);
 		//token4 = verifyCreateUser(userFirstName4, userLastName4, userPassword4, userEmailAddress4, userPhoneNumber4, false, passwordResetQuestion4, passwordResetAnswer4, null, null);
-		//token3 = verifyCreateUser("Joe", "Wroblewski", "joepwro", "brokenUser@gmail.com", "6302156979", false, passwordResetQuestion3, passwordResetAnswer3, "41.809", "-87.9");
+		//token3 = verifyCreateUser("Victor", "Panozzo", "trains", "genius@roseland.com", "7082461682", false, passwordResetQuestion3, passwordResetAnswer3, "41.809", "-87.9");
 		
 		// =======================
 		// GET USER INFO and TOKEN
 		// =======================
 		//verifyGetUserInfo(token1);
 		//verifyGetUserInfo("8if3v0u0h3spn867mk830ach5r");
-		//verifyGetUserInfo(token3);
+		//verifyGetUserInfo(token2);
 		//verifyGetUserInfo(token4);
 		//verifyGetUserToken(userEmailAddress1, userPassword1);
 		//verifyGetUserToken("rteamtest9@gmail.com", "redst0ne");
@@ -408,7 +408,7 @@ public class ClientTest {
 		//*****************************************************
 		// *** To Network Authenticated both Users and Members
 		//*****************************************************
-	    //verifyGetUserConfirmationInfo("rr7pnjh5jsg40b9qnjqr0j3k1p");  // copy-and-paste oneUseToken (from user welcome msg recipient entity) param from local GAE data viewer
+	    //verifyGetUserConfirmationInfo("6varigrr1e8ifsncchgq855msn");  // copy-and-paste oneUseToken (from user welcome msg recipient entity) param from local GAE data viewer
 
 		
 		// ===========
@@ -447,7 +447,7 @@ public class ClientTest {
 		//PARAMS:verifyCreateTeam(String theTeamName, String theTeamDescription, String theLeagueName, String theSport,
 		//		                  String theTeamSiteUrl, String theGender, String theCity, String theState, String theLatitude,
 		//		                  String theLongitude, Boolean theUseTwitter, String theToken)
-		//verifyCreateTeam("Cubs", "Joe's first team", leagueName1, teamSport1, teamSiteUrl1, teamGender1, teamCity1, teamState1, teamLatitude1, teamLongitude1, false, token1);
+		//verifyCreateTeam("Mudville Gang", "Walter's first team", leagueName1, teamSport1, teamSiteUrl1, teamGender1, teamCity1, teamState1, teamLatitude1, teamLongitude1, false, token1);
 		//verifyCreateTeam(teamName1, teamDescription1, leagueName1, teamSport1, teamSiteUrl1, teamGender1, teamCity1, teamState1, teamLatitude1, teamLongitude1, true, token1); //use Twitter
 		//verifyCreateTeam(teamName2, "a team description", leagueName2, teamSport2, teamSiteUrl2, teamGender2, teamCity2, teamState2, teamLatitude2, teamLongitude2, false, token2);
 		//verifyCreateTeam(teamName2, teamDescription2, leagueName2, teamSport2, teamSiteUrl2, teamGender2, teamCity2, teamState2, teamLatitude2, teamLongitude2, true, token1); //use Twitter
@@ -480,7 +480,7 @@ public class ClientTest {
 		//verifyGetTeamInfo(teamId2, token2);
 		//verifyGetTeamInfo("aglydGVhbXRlc3RyDQsSBFRlYW0Y5eGbAQw", "embaf11058fikl5nki4r0o7vk0");
 		//verifyGetTeams(token2);
-		//verifyGetTeams("8if3v0u0h3spn867mk830ach5r");
+		//verifyGetTeams("39t5aa0tcplr362atijotphnpg");
 		//verifyGetTeams(token4);
 		
 		
@@ -591,8 +591,8 @@ public class ClientTest {
 		//verifyGetMemberInfo(teamId1, memberId1_2, token1);
 		//verifyGetMemberInfo(teamId2, "aglydGVhbXRlc3RyGAsSBFRlYW0Y_gkMCxIGTWVtYmVyGIMKDA", token1);
 		//verifyGetMemberInfo(teamId1, creatorMemberId1, token1);
-		//verifyGetMembershipStatus(userEmailAddress1);
-		//verifyGetMembershipStatus("rteamtest1@gmail.com");
+		//verifyGetMembershipStatus(userEmailAddress1, "7082461682");
+		//verifyGetMembershipStatus("stretch@gmail.com", "7082461682");
 		
 		
 		// =============
@@ -974,7 +974,7 @@ public class ClientTest {
 		//verifyUserMigration("normalizePhoneNumbersTask", null); // migration to normalize member phone numbers to all digits
 		//verifyUserMigration("normalizeGuardianListsTask", null); // for each member, ensure all guardian lists are the same size
 		//verifyUserMigration("defaultMemberAccessPreferencesTask", null); // for each member, default new access preference fields
-		verifyUserMigration("setActivityIsReplyTask", null); // isReply in all activities set to false
+		//verifyUserMigration("setActivityIsReplyTask", null); // isReply in all activities set to false
 	}
 	
 	private static String verifyUserApis() {
@@ -1542,11 +1542,19 @@ public class ClientTest {
 		}
 	}
 
-	private static void verifyGetMembershipStatus(String theEmailAddress) {
+	private static void verifyGetMembershipStatus(String theEmailAddress, String thePhoneNumber) {
 		System.out.println("\n\n verifyGetMembershipStatus() starting .....\n");
-		String encodedEmailAddress = ClientTest.encode(theEmailAddress);
 		String urlStr = HTTPS_BASE_URL + MEMBER_RESOURCE_URI;
-		urlStr = urlStr + "?" + "emailAddress=" + encodedEmailAddress;
+		// add dummy query parameter so all the conditional parameters below can be appended with "&"
+		urlStr = urlStr + "?" + "ignore=na";
+		if(theEmailAddress != null) {
+			String encodedEmailAddress = ClientTest.encode(theEmailAddress);
+			urlStr = urlStr + "&" + "emailAddress=" + encodedEmailAddress;
+		}
+		if(thePhoneNumber != null) {
+			String encodedPhoneNumber = ClientTest.encode(thePhoneNumber);
+			urlStr = urlStr + "&" + "phoneNumber=" + encodedPhoneNumber;
+		}
     	System.out.println("urlStr with encoding = " + urlStr + "\n");
 		try {
 			URL url = new URL(urlStr);
