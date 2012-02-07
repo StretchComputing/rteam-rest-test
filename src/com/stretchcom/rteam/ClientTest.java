@@ -873,28 +873,31 @@ public class ClientTest {
 		// ==============
 		// CREATE ACTIVTY
 		// ==============
-		//verifyCreateActivity(teamId1, "3.0 is coming!", null, token1); // simple status update
-		//verifyCreateActivity(teamId1, "Fake photo message", "this is not a jpeg", token1); // try to send a fake photo - didn't work in Dev - said missing plugin
-		//verifyCreateActivity(teamId2, "Peace, Love, Joy", null, token1); // simple status update
+		// PARAMS: verifyCreateActivity(String theTeamId, String theStatusUpdate, String theFakePhoto, String theEventId, String theEventType, String theToken)
+		//verifyCreateActivity(teamId1, "3.0 is coming!", null, null, null, token1); // simple status update
+		//verifyCreateActivity(teamId1, "Fake photo message", "this is not a jpeg", null, null, token1); // try to send a fake photo - didn't work in Dev - said missing plugin
+		//verifyCreateActivity(teamId2, "Peace, Love, Joy", null, null, null, token1); // simple status update
 //		String bigStatus = "this is the frst part of the message and the length of this is seventy" +
 //		                   " this is the second part of the message also has length of yep seventy" +
 //		                   "exceeds 140 char limt!!!!!";
-//		verifyCreateActivity(teamId2, bigStatus, null, token1); // status update size exceeds Twitter 140 char limit
+//		verifyCreateActivity(teamId2, bigStatus, null, null, null, token1); // status update size exceeds Twitter 140 char limit
 //		String maxStatus = "this is the frst part of the message and the length of this is seventy" +
 //        			       "this is the second part of the message also has length of xxxx seventy";
-//		verifyCreateActivity(teamId2, maxStatus, null, token1); // status update size exactly 140 char limit
-//		verifyCreateActivity(teamId2, "Peace, Love, Joy", null, token1); // status update size exactly 140 char limit
+//		verifyCreateActivity(teamId2, maxStatus, null, null, null, token1); // status update size exactly 140 char limit
+//		verifyCreateActivity(teamId1, "3.0 days away", null, null, null, token1);
+//		verifyCreateActivity(teamId1, "Peace, Love, Joy 2", null, "aglydGVhbXRlc3RyCgsSBEdhbWUYCww", "game", token1); // status update size exactly 140 char limit
 		
 		
 		// =========================
 		// GET ACTIVITIES FOR A TEAM
 		// =========================
-		// PARAMS:   verifyGetActivities(String theTeamId, String theMaxCount, String theRefreshFirst, String theNewOnly,
-        //                               String theMaxCacheId, String theTimeZone, String theToken)
-		//verifyGetActivities(teamId1, "20", "false", null, null, userTimeZone1, token1); // get from cache like first call from screen
-		//verifyGetActivities(teamId1, null, null, null, null, userTimeZone1, token2);    // get from cache -- using all defaults
-		//verifyGetActivities(teamId1, "20", "true", "true", null, userTimeZone1, token1);  // refresh first, new only
-		//verifyGetActivities(teamId1, "20", "true", "true", null, userTimeZone1, token2);  // refresh first, new only
+		// PARAMS:   verifyGetActivities(String theTeamId, String theMaxCount, String theRefreshFirst, String theNewOnly, String theMaxCacheId,
+        //                               String theEventId, String theEventType, String theIncludeDetails, String theTimeZone, String theToken)
+		//verifyGetActivities(teamId1, "20", "false", null, null, null, null, null, userTimeZone1, token1); // get from cache like first call from screen
+		//verifyGetActivities(teamId1, null, null, null, null, null, null, null, userTimeZone1, token2);    // get from cache -- using all defaults
+		//verifyGetActivities(teamId1, "20", "true", "true", null, null, null, null, userTimeZone1, token1);  // refresh first, new only
+		//verifyGetActivities(teamId1, "20", "true", "true", null, null, null, null, userTimeZone1, token1);  // refresh first, new only
+		//verifyGetActivities(teamId1, null, null, null, null, "aglydGVhbXRlc3RyCgsSBEdhbWUYCww", "game", "false", userTimeZone1, token1);  // by event ID
 		
 		
 		// ============================
@@ -975,6 +978,7 @@ public class ClientTest {
 		//verifyUserMigration("normalizeGuardianListsTask", null); // for each member, ensure all guardian lists are the same size
 		//verifyUserMigration("defaultMemberAccessPreferencesTask", null); // for each member, default new access preference fields
 		//verifyUserMigration("setActivityIsReplyTask", null); // isReply in all activities set to false
+		//verifyUserMigration("setTeamShortenedPageUrlTask", null); // implements shortened URL scheme for all teams
 	}
 	
 	private static String verifyUserApis() {
@@ -2551,7 +2555,7 @@ public class ClientTest {
 		}
 	}
 	
-	private static void verifyCreateActivity(String theTeamId, String theStatusUpdate, String theFakePhoto, String theToken) {
+	private static void verifyCreateActivity(String theTeamId, String theStatusUpdate, String theFakePhoto, String theEventId, String theEventType, String theToken) {
 		System.out.println("\n\n verifyCreateActivity() starting .....\n");
 		String encodedTeamId = ClientTest.encode(theTeamId);
 		String urlStr = HTTPS_BASE_URL + TEAM_RESOURCE_URI + "/" + encodedTeamId + "/" + ACTIVITIES_RESOURCE_URI;
@@ -2563,6 +2567,8 @@ public class ClientTest {
 				String photoBase64 = Base64.encodeBase64String(theFakePhoto.getBytes());
 				json.put("photo", photoBase64);
 			}
+			if(theEventId != null) json.put("eventId", theEventId);
+			if(theEventType != null) json.put("eventType", theEventType);
 			System.out.println("json object = " + json.toString());
 			
 			URL url = new URL(urlStr);
@@ -2580,8 +2586,8 @@ public class ClientTest {
 	}
 	
 	
-	private static void verifyGetActivities(String theTeamId, String theMaxCount, String theRefreshFirst, String theNewOnly,
-			                                String theMaxCacheId, String theTimeZone, String theToken) {
+	private static void verifyGetActivities(String theTeamId, String theMaxCount, String theRefreshFirst, String theNewOnly, String theMaxCacheId,
+			                                String theEventId, String theEventType, String theIncludeDetails, String theTimeZone, String theToken) {
 		System.out.println("\n\n verifyGetActivities() starting .....\n");
 		String encodedTeamId = ClientTest.encode(theTeamId);
 		String encodedTimeZone = ClientTest.encode(theTimeZone);
@@ -2603,6 +2609,18 @@ public class ClientTest {
 		if(theMaxCacheId != null) {
 			String encodedMaxCacheId = ClientTest.encode(theMaxCacheId);
 			urlStr = urlStr + "&" + "maxCacheId=" + encodedMaxCacheId;
+		}
+		if(theEventId != null) {
+			String encodedEventId = ClientTest.encode(theEventId);
+			urlStr = urlStr + "&" + "eventId=" + encodedEventId;
+		}
+		if(theEventType != null) {
+			String encodedEventType = ClientTest.encode(theEventType);
+			urlStr = urlStr + "&" + "eventType=" + encodedEventType;
+		}
+		if(theIncludeDetails != null) {
+			String encodedIncludeDetails = ClientTest.encode(theIncludeDetails);
+			urlStr = urlStr + "&" + "includeDetails=" + encodedIncludeDetails;
 		}
 
 		System.out.println("url with encoding = " + urlStr + "\n");
