@@ -33,8 +33,8 @@ public class ClientTest {
 	//::TODO::  **************** HTTPS TURNED OFF RIGHT NOW *************************
 	//private static final String HTTPS_BASE_URL = "https://14.latest.rteamtest.appspot.com:8443/"; // tried this but it didn't work
 	//private static final String HTTPS_BASE_URL = "http://v2-3.latest.rteamtest.appspot.com/";
-	//private static final String HTTPS_BASE_URL = "http://rteamtest.appspot.com/";
-	private static final String HTTPS_BASE_URL = "http://localhost:8888/v1/";  //development server.  Run->Run As->Web Application
+	private static final String HTTPS_BASE_URL = "http://rteamtest.appspot.com/";
+	//private static final String HTTPS_BASE_URL = "http://localhost:8888/v1/";  //development server.  Run->Run As->Web Application
 	//private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
 	
 	private static final String USERS_RESOURCE_URI = "users";
@@ -479,7 +479,7 @@ public class ClientTest {
 		//verifyGetTeamInfo(teamId1, token1);
 		//verifyGetTeamInfo(teamId2, token2);
 		//verifyGetTeamInfo("aglydGVhbXRlc3RyDQsSBFRlYW0Y5eGbAQw", "embaf11058fikl5nki4r0o7vk0");
-		//verifyGetTeams(token2);
+		//verifyGetTeams(token1);
 		//verifyGetTeams("39t5aa0tcplr362atijotphnpg");
 		//verifyGetTeams(token4);
 		
@@ -641,7 +641,7 @@ public class ClientTest {
 		//verifyUpdateGame(teamId1, gameId1_1, null, null, "no notification test", null, null, null, null, null, null, null, "none", null, null, null, token1); // update desc, no notification
 		//verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, null, null, null, null, null, null, null, "Wrigley Field", null, null, token1); // update location
 		//verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, 41.1111111, -87.7777777, null, null, null, null, "plain", "Quad Cities", null, true, token1); // update location for all games, w/ notification
-		//verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, null, null, null, "4", "4", "-4", null, null, null, null, token1); // update scores and interval
+		verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, null, null, null, "4", "4", "-1", null, null, null, null, token1); // update scores and interval
 		//verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, null, null, null, "2", "10", "4.4", null, null, null, null, token1); // invalid score/interval
 		//verifyUpdateGame(teamId1, "aglydGVhbXRlc3RyCgsSBEdhbWUYCww", "2012-1-8 1:05", userTimeZone1, null, null, null, null, null, null, null, null, null, null, null, null, token1); // update start time
 		//verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, null, null, null, null, null, null, null, null, "closed", null, token1); // close the game poll
@@ -667,6 +667,7 @@ public class ClientTest {
 		// GET GAME INFO, TEAM GAMES AND ALL GAMES
 		// =======================================
 		//verifyGetTeamGames(teamId1, gameTimeZone1_1, token1);
+		//verifyGetTeamGames(teamId1, gameTimeZone1_1, null);  // test for rScoreboard which does NOT use a token
 		//verifyGetTeamGames(teamId2, gameTimeZone2_1, token1);
 		//verifyGetAllGames(gameTimeZone1_1, token1);
 		//verifyGetGameInfo(teamId1, "aglydGVhbXRlc3RyCgsSBEdhbWUYCww", gameTimeZone1_1, token1);
@@ -979,6 +980,7 @@ public class ClientTest {
 		//verifyUserMigration("defaultMemberAccessPreferencesTask", null); // for each member, default new access preference fields
 		//verifyUserMigration("setActivityIsReplyTask", null); // isReply in all activities set to false
 		//verifyUserMigration("setTeamShortenedPageUrlTask", null); // implements shortened URL scheme for all teams
+		verifyUserMigration("cleanUpUserTeamsTask", null); // maintenance: removes teams from user team list that need to be cleaned up
 	}
 	
 	private static String verifyUserApis() {
