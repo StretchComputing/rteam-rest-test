@@ -33,8 +33,8 @@ public class ClientTest {
 	//::TODO::  **************** HTTPS TURNED OFF RIGHT NOW *************************
 	//private static final String HTTPS_BASE_URL = "https://14.latest.rteamtest.appspot.com:8443/"; // tried this but it didn't work
 	//private static final String HTTPS_BASE_URL = "http://v2-3.latest.rteamtest.appspot.com/";
-	private static final String HTTPS_BASE_URL = "http://rteamtest.appspot.com/";
-	//private static final String HTTPS_BASE_URL = "http://localhost:8888/v1/";  //development server.  Run->Run As->Web Application
+	//private static final String HTTPS_BASE_URL = "http://rteamtest.appspot.com/";
+	private static final String HTTPS_BASE_URL = "http://localhost:8888/v1/";  //development server.  Run->Run As->Web Application
 	//private static final String HTTPS_BASE_URL = "http://localhost:8888/";  //development server.  Run->Run As->Web Application
 	
 	private static final String USERS_RESOURCE_URI = "users";
@@ -82,7 +82,7 @@ public class ClientTest {
 		// USER TOKEN
 //		String token1 = "jha31i9e14k0rf92daqvb8epg2"; // 'User One' - IDs below do NOT belong to this user!!!!
 //		String token2 = "8if3v0u0h3spn867mk830ach5r"; // joepwro on GAE
-//		String token3 = "8ehecce6lqjegntlksm7f83t7u"; // Mike's user that is having Get Activity for All Teams API errors
+//		String token3 = "aipb8tpp8sdj83lgg1la6qlhua"; // shannontavernier@msn.com
 //		
 //		// TEAM #1
 //		String teamId1 = "aglydGVhbXRlc3RyDQsSBFRlYW0YytG4AQw"; // JustJoes
@@ -136,8 +136,8 @@ public class ClientTest {
 		String memberId2_2 = "";
 		String gameId2_1 = "";
 		String practiceId2_1 = "";
-//		
-//		String teamId3 = "";
+		
+		String teamId3 = "";
 		//=====================================================================================================================
 
 		
@@ -397,7 +397,7 @@ public class ClientTest {
 		//verifyGetUserInfo(token1);
 		//verifyGetUserInfo("8if3v0u0h3spn867mk830ach5r");
 		//verifyGetUserInfo(token2);
-		//verifyGetUserInfo(token4);
+		//verifyGetUserInfo(token3);
 		//verifyGetUserToken(userEmailAddress1, userPassword1);
 		//verifyGetUserToken("rteamtest9@gmail.com", "redst0ne");
 		//verifyGetUserToken("joepwro@gmail.com", "uto123");
@@ -481,7 +481,7 @@ public class ClientTest {
 		//verifyGetTeamInfo("aglydGVhbXRlc3RyDQsSBFRlYW0Y5eGbAQw", "embaf11058fikl5nki4r0o7vk0");
 		//verifyGetTeams(token1);
 		//verifyGetTeams("39t5aa0tcplr362atijotphnpg");
-		//verifyGetTeams(token4);
+		//verifyGetTeams(token3);
 		
 		
 		// ===========
@@ -585,7 +585,7 @@ public class ClientTest {
 		//verifyGetMembers(teamId1, false, token1);  // do not include fans
 		//verifyGetMembers("aglydGVhbXRlc3RyDQsSBFRlYW0YnaObAQw", false, token1);
 		//verifyGetMembers("aglydGVhbXRlc3RyDQsSBFRlYW0Y5LKjAQw", true, "8if3v0u0h3spn867mk830ach5r"); //2-2 test
-		//verifyGetMembers(teamId3, true, token3);  // include fans
+		//verifyGetMembers("aglydGVhbXRlc3RyDQsSBFRlYW0Y88nKAQwf", true, token3);  // include fans
 		
 		//verifyGetMemberInfo(teamId1, memberId1_1, token1);
 		//verifyGetMemberInfo(teamId1, memberId1_2, token1);
@@ -641,7 +641,7 @@ public class ClientTest {
 		//verifyUpdateGame(teamId1, gameId1_1, null, null, "no notification test", null, null, null, null, null, null, null, "none", null, null, null, token1); // update desc, no notification
 		//verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, null, null, null, null, null, null, null, "Wrigley Field", null, null, token1); // update location
 		//verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, 41.1111111, -87.7777777, null, null, null, null, "plain", "Quad Cities", null, true, token1); // update location for all games, w/ notification
-		verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, null, null, null, "4", "4", "-1", null, null, null, null, token1); // update scores and interval
+		//verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, null, null, null, "4", "4", "-1", null, null, null, null, token1); // update scores and interval
 		//verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, null, null, null, "2", "10", "4.4", null, null, null, null, token1); // invalid score/interval
 		//verifyUpdateGame(teamId1, "aglydGVhbXRlc3RyCgsSBEdhbWUYCww", "2012-1-8 1:05", userTimeZone1, null, null, null, null, null, null, null, null, null, null, null, null, token1); // update start time
 		//verifyUpdateGame(teamId1, gameId1_1, null, null, null, null, null, null, null, null, null, null, null, null, "closed", null, token1); // close the game poll
@@ -906,10 +906,12 @@ public class ClientTest {
 		// ============================
 		// PARAMS: verifyGetActivitiesForAllTeams(String theMaxCount, String theRefreshFirst, String theNewOnly,
         //                                        String theMostCurrentDateStr, String theTotalNumberOfDaysStr,
-		//                                        String theTimeZone, String theToken)
-		//verifyGetActivitiesForAllTeams("20", "false", null, "2012-1-12", "30", userTimeZone1, token1);  // get last week of activity from cache
-		//verifyGetActivitiesForAllTeams("20", "true", "true", null, null, userTimeZone1, token2); // refresh & newOnly
-		//verifyGetActivitiesForAllTeams("20", null, "true", null, null, userTimeZone1, token3); // refresh & newOnly
+		//                                        String theTimeZone, String theMediaOnly, String theToken)
+		//verifyGetActivitiesForAllTeams("20", "false", null, "2012-1-12", "30", userTimeZone1, null, token1);  // get last week of activity from cache
+		//verifyGetActivitiesForAllTeams("20", "true", "true", null, null, userTimeZone1, null, token2); // refresh & newOnly
+		//verifyGetActivitiesForAllTeams("20", null, "true", null, null, userTimeZone1, null, token3); // refresh & newOnly
+		//verifyGetActivitiesForAllTeams("6", "false", null, "2012-4-07", null, userTimeZone1, "true", token1);  // mediaOnly driven by maxCount test
+		//verifyGetActivitiesForAllTeams("20", "false", null, "2012-4-07", "30", userTimeZone1, null, token1);  // not mediaOnly driven by maxCount test
 		
 		
 		// ======================
@@ -980,7 +982,7 @@ public class ClientTest {
 		//verifyUserMigration("defaultMemberAccessPreferencesTask", null); // for each member, default new access preference fields
 		//verifyUserMigration("setActivityIsReplyTask", null); // isReply in all activities set to false
 		//verifyUserMigration("setTeamShortenedPageUrlTask", null); // implements shortened URL scheme for all teams
-		verifyUserMigration("cleanUpUserTeamsTask", null); // maintenance: removes teams from user team list that need to be cleaned up
+		//verifyUserMigration("cleanUpUserTeamsTask", null); // maintenance: removes teams from user team list that need to be cleaned up
 	}
 	
 	private static String verifyUserApis() {
@@ -2641,7 +2643,7 @@ public class ClientTest {
 	
 	private static void verifyGetActivitiesForAllTeams(String theMaxCount, String theRefreshFirst, String theNewOnly,
 			                                           String theMostCurrentDateStr, String theTotalNumberOfDaysStr,
-			                                           String theTimeZone, String theToken) {
+			                                           String theTimeZone, String theMediaOnly, String theToken) {
 		System.out.println("\n\n verifyGetActivitiesForAllTeams() starting .....\n");
 		String encodedTimeZone = ClientTest.encode(theTimeZone);
 		String urlStr = HTTPS_BASE_URL + ACTIVITIES_RESOURCE_URI + "/" + encodedTimeZone;
@@ -2666,6 +2668,10 @@ public class ClientTest {
 		if(theTotalNumberOfDaysStr != null) {
 			String encodedTotalNumberOfDaysStr = ClientTest.encode(theTotalNumberOfDaysStr);
 			urlStr = urlStr + "&" + "totalNumberOfDays=" + encodedTotalNumberOfDaysStr;
+		}
+		if(theMediaOnly != null) {
+			String encodedMediaOnly = ClientTest.encode(theMediaOnly);
+			urlStr = urlStr + "&" + "mediaOnly=" + encodedMediaOnly;
 		}
 
 		System.out.println("url with encoding = " + urlStr + "\n");
